@@ -34,9 +34,13 @@ The pipeline follows these high-level steps:
    - Glue Crawler
 
    - Glue Data Catalog
-
+     
    - Athena
 
    - EC2
 
 - Streaming Platform: Apache Kafka
+     
+**📊 Dataset**
+
+Here is the dataset used: [dataset.csv](https://github.com/user-attachments/files/22228717/dataset.csv)
