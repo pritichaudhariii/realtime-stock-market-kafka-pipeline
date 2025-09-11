@@ -7,7 +7,7 @@ This project demonstrates an end-to-end real-time data engineering pipeline for 
 
 The solution integrates streaming, storage, cataloging, and querying layers to simulate a production-grade architecture.
 
-fdgghyhytytjh
+fdgghyhytyt
 **🏗️ Architecture**
 
 ![Architecture](https://github.com/user-attachments/assets/d062636a-37cc-4153-ba61-6bb3677c964f)
