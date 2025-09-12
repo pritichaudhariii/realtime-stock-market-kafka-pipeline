@@ -1,0 +1,32 @@
+# On your EC2 instance:
+
+# 1. Download & extract Kafka 4.0
+wget https://downloads.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgz
+tar -xvf kafka_2.13-4.0.0.tgz
+cd kafka_2.13-4.0.0/
+
+# 2. Install required Java
+sudo yum install java-11-openjdk
+java -version
+
+# 3. (If still using ZooKeeper, deprecated but possible) start ZK, or skip if fully KRaft
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+# 4. Modify config/server.properties:
+#    - set listeners and advertised.listeners to your EC2 public IP
+#    - if using 4.0 and KRaft mode, configure the metadata listener & controller quorum settings
+
+# 5. Start Kafka
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+bin/kafka-server-start.sh config/server.properties
+
+# 6. Create topic (if needed)
+bin/kafka-topics.sh --create --topic demo_testing2 \
+  --bootstrap-server {EC2_PUBLIC_IP}:9092 --replication-factor 1 --partitions 1
+
+# 7. Producer
+bin/kafka-console-producer.sh --topic demo_testing2 \
+  --bootstrap-server {EC2_PUBLIC_IP}:9092
+
+# 8. Consumer
+bin/kafka-console-consumer.sh --topic demo_testing2 --bootstrap-server {EC2_PUBLIC_IP}:9092
